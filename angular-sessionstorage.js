@@ -49,7 +49,7 @@
      * @name $sessionStorage
      *
      * @description
-     * Provide read/write access to browser's sessionStorage.
+     * Provide read/write access to browsers' sessionStorage.
      *
      * @example
      * ```js
