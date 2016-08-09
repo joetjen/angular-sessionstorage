@@ -182,6 +182,10 @@
           var keyName = [opts['prefix'], key].join('')
 
           storage.removeItem(keyName)
+        },
+
+        isEnabled: function () {
+          return !storage.isMemoryStorage
         }
       }
     }]
@@ -190,4 +194,79 @@
       return options ? angular.extend({}, defaults, options) : defaults
     }
   }])
-})(window, window.angular, window.sessionStorage)
+})(window, window.angular, (function () {
+  'use strict'
+
+  var TEST = 'SOME_TEST_KEY'
+  var storage
+
+  function MemoryStorage () {
+    Object.defineProperty(this, 'length', {
+      get: function () {
+        return Object.keys(this).length
+      }
+    })
+  }
+
+  MemoryStorage.prototype = Object.create(Object.prototype)
+  MemoryStorage.prototype.constructor = MemoryStorage
+
+  MemoryStorage.prototype.getItem = function (keyName) {
+    return this[keyName]
+  }
+
+  MemoryStorage.prototype.setItem = function (keyName, value) {
+    this[keyName] = value
+  }
+
+  MemoryStorage.prototype.removeItem = function (keyName) {
+    delete this[keyName]
+  }
+
+  MemoryStorage.prototype.isMemoryStorage = true
+
+  try {
+    storage = window.sessionStorage
+  } catch (ex) {
+    return new MemoryStorage()
+  }
+
+  if (typeof storage !== 'object') {
+    return new MemoryStorage()
+  }
+
+  if (typeof storage.getItem !== 'function') {
+    return new MemoryStorage()
+  }
+
+  if (typeof storage.setItem !== 'function') {
+    return new MemoryStorage()
+  }
+
+  if (typeof storage.removeItem !== 'function') {
+    return new MemoryStorage()
+  }
+
+  if (typeof storage.clear !== 'function') {
+    return new MemoryStorage()
+  }
+
+  try {
+    storage.setItem(TEST, TEST)
+
+    if (storage.getItem(TEST) !== TEST) {
+      storage.clear()
+      storage.setItem(TEST, TEST)
+
+      if (storage.getItem(TEST) !== TEST) {
+        return new MemoryStorage()
+      }
+    }
+
+    storage.removeItem(TEST)
+  } catch (ex) {
+    return new MemoryStorage()
+  }
+
+  return storage
+})())
