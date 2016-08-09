@@ -1,7 +1,7 @@
 {
   "name": "angular-sessionstorage",
   "version": "1.0.0",
-  "description": "Provide read/write access to browser's sessionStorage.",
+  "description": "Provide read/write access to browsers' sessionStorage.",
   "authors": [
     "Jan Oetjen <oetjenj@gmail.com>"
   ],

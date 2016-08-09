@@ -1,6 +1,6 @@
 # angular-sessionstorage
 
-Provide read/write access to browser's sessionStorage.
+Provide read/write access to browsers' sessionStorage.
 
 ## Install
 
@@ -33,7 +33,7 @@ Add a `<script>` to you `index.html`:
 Then add `ngSessionStorage` as a dependency for you app:
 
 ```js
-angular.module('myApp', ['ngSessionStorage')])
+angular.module('myApp', ['ngSessionStorage'])
 ```
 
 ## Documentation
@@ -57,7 +57,8 @@ _Parameters_
 
 _Returns_
 
-|:-------|:------------------------|
+| Type   | Description               |
+|:-------|:--------------------------|
 | string | Raw sessionStorage value. |
 
 ###### getObject(key, [options])
@@ -73,7 +74,8 @@ _Parameters_
 
 _Returns_
 
-|:-------|:---------------------------------|
+| Type   | Description                        |
+|:-------|:-----------------------------------|
 | Object | Deserialized sessionStorage value. |
 
 ###### getAll([options])
@@ -88,7 +90,8 @@ _Parameters_
 
 _Returns_
 
-|:-------|:--------------------------|
+| Type   | Description                 |
+|:-------|:----------------------------|
 | Object | All sessionStorage entries. |
 
 ###### put(key, value, [options])
