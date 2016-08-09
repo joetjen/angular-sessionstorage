@@ -7,9 +7,6 @@
     <exe-path>$USER_HOME$/.nvm/versions/node/v4.4.5/bin/bower</exe-path>
     <config-path />
   </component>
-  <component name="ProjectDictionaryState">
-    <dictionary name="jo" />
-  </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
       <profile-state>
