@@ -98,9 +98,7 @@
          * @returns {Object} Deserialized sessionStorage value.
          */
         getObject: function (key, options) {
-          var opts = calcOptions(options)
-          var keyName = [opts['prefix'], key].join('')
-          var keyValue = this.get(keyName)
+          var keyValue = this.get(key, opts)
 
           return keyValue ? angular.fromJson(keyValue) : keyValue
         },
@@ -121,9 +119,12 @@
           var opts = calcOptions(options)
           var prefix = new RegExp(['^', opts['prefix']].join(''))
           var all = {}
+          var key
 
-          for (var key in storage) {
-            if (storage.hasOwnProperty(key) && prefix.test(key)) {
+          for (var keyName in storage) {
+            if (storage.hasOwnProperty(keyName) && prefix.test(keyName)) {
+              key = keyName.replace(prefix, '')
+
               all[key] = this.getObject(key)
             }
           }
