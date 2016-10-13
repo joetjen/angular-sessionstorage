@@ -98,7 +98,7 @@
          * @returns {Object} Deserialized sessionStorage value.
          */
         getObject: function (key, options) {
-          var keyValue = this.get(key, opts)
+          var keyValue = this.get(key, options)
 
           return keyValue ? angular.fromJson(keyValue) : keyValue
         },
